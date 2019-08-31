@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   // Is logged in indicators
-  private isLogged: boolean = false;
+  private isLogged: boolean = null;
   userStateSubject: Subject<boolean> = new Subject<boolean>();
 
   // User
@@ -25,6 +25,11 @@ export class AuthService {
 
       // Changing user state
       this.isLogged = user ? true : false;
+
+      if(this.isLogged){
+        this.router.navigate(['/chat']);
+      }
+
 
       // Fire user state changes event
       this.userStateChanged();
@@ -95,14 +100,13 @@ export class AuthService {
     this.afAuth.auth.signOut()
     .then( () => {
       console.log("User logout successfully");
+      // Redirect the user to home page
+      this.router.navigate(['/login']);
     })
     .catch( err => {
       console.log("User faild to logout");
       console.error(err);
     } );
-
-    // Redirect the user to home page
-    this.router.navigate(['/']);
   }
   
 
