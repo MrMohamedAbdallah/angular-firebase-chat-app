@@ -10,30 +10,30 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   // Is logged in indicators
-  private isLogged: boolean = null;
+  private isLogged: boolean = true;
   userStateSubject: Subject<boolean> = new Subject<boolean>();
 
   // User
-  private user: any = null;
+  private user: any = {email: 'mohame@example.com'};
 
   constructor(private afAuth: AngularFireAuth, private router: Router) {
 
-    // Subscribe to user status
-    this.afAuth.authState.subscribe( user => {
+    // // Subscribe to user status
+    // this.afAuth.authState.subscribe( user => {
 
-      this.user = user;
+    //   this.user = user;
 
-      // Changing user state
-      this.isLogged = user ? true : false;
+    //   // Changing user state
+    //   this.isLogged = user ? true : false;
 
-      if(this.isLogged){
-        this.router.navigate(['/chat']);
-      }
+    //   if(this.isLogged){
+    //     this.router.navigate(['/chat']);
+    //   }
 
 
-      // Fire user state changes event
-      this.userStateChanged();
-    });
+    //   // Fire user state changes event
+    //   this.userStateChanged();
+    // });
 
 
   }
@@ -128,6 +128,7 @@ export class AuthService {
    * Getting user value
    */
   getUser(){
+    console.log(this.user);
     return this.user;
   }
 

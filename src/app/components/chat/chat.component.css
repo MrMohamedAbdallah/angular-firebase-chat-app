@@ -1,0 +1,23 @@
+.row{
+    height: calc(100vh - 58px);
+    min-height: 500px;
+}
+
+.row [class^="col"]{
+    height: 100%;
+    overflow: auto;
+}
+
+.chat{
+    display: flex;
+    flex-direction: column;
+}
+
+.chat .bg-primary::selection{
+    background-color: rgb(49, 255, 93);
+}
+
+.chat .chat-box{
+    flex: 1 0 0;
+    overflow: auto;
+}

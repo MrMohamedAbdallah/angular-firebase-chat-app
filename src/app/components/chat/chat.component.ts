@@ -12,4 +12,7 @@ export class ChatComponent implements OnInit {
   ngOnInit() {
   }
 
+  range(n: number){
+    return new Array(n);
+  }
 }
