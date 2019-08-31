@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container">
+        <div class="navbar-brand">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        </div>
+        <!-- Auth list -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Login -->
+            <li class="nav-item">
+                <a routerLink="/login" class="nav-link" routerLinkActive="active">Login</a>
+            </li>
+            <!-- Register -->
+            <li class="nav-item">
+                <a routerLink="/register" class="nav-link" routerLinkActive="active">register</a>
+            </li>
+        </ul>
+    </div>
+</nav>

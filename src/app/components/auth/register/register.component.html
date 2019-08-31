@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col-md-6 mx-auto card card-body bg-light">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email" class="font-weight-bolder">Email:</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="form-control"
+          formControlName="email"
+          [class.is-invalid]="isInvalid('email')"
+        />
+        <small
+          class="invalid-feedback font-weight-bolder"
+          *ngIf="hasError('email', 'required')"
+        >
+          Email is required
+        </small>
+        <small
+          class="invalid-feedback font-weight-bolder"
+          *ngIf="hasError('email', 'email')"
+        >
+          Not a valid email format
+        </small>
+      </div>
+      <!-- /Email -->
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password" class="font-weight-bolder">Password:</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="form-control"
+          autocomplete="new-password"
+          formControlName="password"
+          [class.is-invalid]="isInvalid('password')"
+        />
+        <small
+          class="invalid-feedback font-weight-bolder"
+          *ngIf="hasError('password', 'required')"
+        >
+          Password is required
+        </small>
+        <small
+          class="invalid-feedback font-weight-bolder"
+          *ngIf="hasError('password', 'minlength')"
+        >
+          Passowrd must be 6 characters long or more
+        </small>
+      </div>
+      <!-- /Password -->
+      <!-- Password Confirmation -->
+      <div class="form-group">
+        <label for="password_confirm" class="font-weight-bolder"
+          >Confirm Password:</label
+        >
+        <input
+          type="password"
+          name="password_confirm"
+          id="password_confirm"
+          class="form-control"
+          autocomplete="new-password"
+          formControlName="password_confirm"
+          [class.is-invalid]="isInvalid('password_confirm')"
+        />
+        <small
+          class="invalid-feedback font-weight-bolder"
+          *ngIf="hasError('password_confirm', 'required')"
+        >
+          Confirm password is required
+        </small>
+        <small
+          class="invalid-feedback font-weight-bolder"
+          *ngIf="hasError('password_confirm', 'password_confirm')"
+        >
+          Passwords don't match
+        </small>
+      </div>
+      <!-- /Password Confirmation -->
+      <!-- Submit -->
+      <div class="form-group">
+        <button
+          type="submit"
+          class="btn btn-block btn-primary font-weight-bolder"
+          [disabled]="registerForm.invalid"
+        >
+          Register
+        </button>
+      </div>
+      <!-- /Submit -->
+    </form>
+    <hr class="my-2" />
+    <button class="btn btn-block btn-danger my-2 font-weight-bolder">
+      Register With Google
+    </button>
+    <button class="btn btn-block btn-dark font-weight-bolder">
+      Register With Github
+    </button>
+  </div>
+</div>
