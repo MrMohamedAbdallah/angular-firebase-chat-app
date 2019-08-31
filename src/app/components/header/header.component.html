@@ -3,8 +3,25 @@
         <div class="navbar-brand">
             <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         </div>
+        <!-- User info -->
+        <ul class="navbar-nav mr-auto" *ngIf="isLogged">
+            <!-- User email -->
+            <li class="nav-item">
+                <span class="text-white">{{ user.email }}</span>
+            </li>
+        </ul>
+        <!-- /User info -->
+        <!-- Log out -->
+        <ul class="navbar-nav ml-auto" *ngIf="isLogged">
+            <!-- User email -->
+            <li class="nav-item">
+                <button class="btn btn-link nav-link" (click)="logout()">Log out</button>
+            </li>
+        </ul>
+        <!-- /Log out -->
+
         <!-- Auth list -->
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto" *ngIf="!isLogged">
             <!-- Login -->
             <li class="nav-item">
                 <a routerLink="/login" class="nav-link" routerLinkActive="active">Login</a>

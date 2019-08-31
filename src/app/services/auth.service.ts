@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { auth } from "firebase";
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: "root"
@@ -15,7 +16,7 @@ export class AuthService {
   // User
   private user: any = null;
 
-  constructor(private afAuth: AngularFireAuth) {
+  constructor(private afAuth: AngularFireAuth, private router: Router) {
 
     // Subscribe to user status
     this.afAuth.authState.subscribe( user => {
@@ -99,21 +100,31 @@ export class AuthService {
       console.log("User faild to logout");
       console.error(err);
     } );
+
+    // Redirect the user to home page
+    this.router.navigate(['/']);
   }
   
 
   /**
    * Fire an event when user state changing
    */
-  userStateChanged(){
+  private userStateChanged(){
     this.userStateSubject.next(this.isLogged);
   }
 
   /**
-   * Getting user status
+   * Getting user state
    */
-  userStatus(){
+  getUserState(){
     return this.isLogged;
+  }
+
+  /**
+   * Getting user value
+   */
+  getUser(){
+    return this.user;
   }
 
 
