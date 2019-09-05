@@ -1,57 +1,69 @@
-<div class="container-fluid">
-  <div class="row">
-    <!-- Chat channels -->
-    <div class="col-lg-2 col-sm-3 col-4 bg-danger px-0">
-      <ul class="list-group">
-        <li
-          class="list-group-item list-group-item-action rounded-0"
-          *ngFor="let n of range(50)"
+<div class="chat row">
+  <div class="col-md-2 col-sm-4 col-4 p-0 users">
+    <ul class="users-list">
+      <li
+        class="list-group-item list-group-item-action rounded-0"
+        *ngFor="let user of users | async"
+      >
+        <a [routerLink]="['/chat', user.userID]" routerActiveLink="active" *ngIf="user.userID != currentUser.uid">
+          {{ user.email }}
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="col chat-box">
+    <!-- Messages -->
+    <div class="messages">
+      <div *ngFor="let msg of messages | async">
+        <div class="msg-owner" 
         >
-          <a href="#" class="">Hello</a>
-        </li>
-      </ul>
-    </div>
-    <!-- /Chat channels -->
-    <!-- Current chat -->
-    <div class="col bg-warning chat px-0">
-      <!-- Chat Header -->
-      <div class="chat-header p-2 bg-white">
-        Somthing is here
-      </div>
-      <!-- /Chat Header -->
-
-      <!-- Chat box -->
-      <div class="chat-box p-2 bg-light">
-        <div class="message my-3 d-flex" *ngFor="let n of range(20)">
-          <img
-            width="50"
-            height="50"
-            class="rounded-circle mr-2"
-            src="https://s3.amazonaws.com/cdn.roosterteeth.com/uploads/images/9f58190f-e4e8-4050-9c5b-8f480daa7fa4/original/3546448-1532389725233-F-Society.jpg"
-          />
-          <div class="msg bg-primary text-white p-2">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia corrupti, esse dignissimos cumque possimus itaque at vitae accusantium veniam aliquam perspiciatis enim velit sunt placeat ea corporis error! Eaque, sint.
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia corrupti, esse dignissimos cumque possimus itaque at vitae accusantium veniam aliquam perspiciatis enim velit sunt placeat ea corporis error! Eaque, sint.
-          </div>
+        <!-- [class.msg]="user.userID != currentUser.uid"
+        [class.msg-owner]="user.userID == currentUser.uid" -->
+          <div class="msg-text">{{ msg.content }}</div>
         </div>
       </div>
-      <!-- /Chat box -->
 
-      <!-- Input box -->
-      <div class="bg-white">
-        <div class="form-group m-0">
-          <textarea
-            name="msg"
-            id="msg"
-            cols="30"
-            rows="5"
-            class="form-control rounded-0"
-          ></textarea>
-          <button type="submit" class="btn btn-primary text-whight-bolder rounded-0">Send</button>
-        </div>
+      <!-- Owner -->
+      <!--       
+      <div class="msg-owner">
+        <div class="msg-text">Hello There</div>
       </div>
-      <!-- /Input box -->
+   -->
     </div>
-    <!-- /Current chat -->
+    <!-- /Messages -->
+    <!-- Form -->
+    <div class="msg-form">
+      <form [formGroup]="msgForm" (ngSubmit)="send()">
+        <textarea
+          name="msg"
+          id="msg"
+          rows="1"
+          class="form-control rounded-0"
+          formControlName="msg"
+        ></textarea>
+        <input
+          type="hidden"
+          name="to"
+          formControlName="to"
+          [(ngModel)]="roomID"
+        />
+        <button type="submit" [disabled]="msgForm.invalid" style="text-align: center;">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="19.11"
+            height="19.11"
+            viewBox="0 0 19.11 19.11"
+          >
+            <path
+              id="ic_send_24px"
+              d="M.007,12.441,14.586,6.22.007,0,0,4.838,10.418,6.22,0,7.6Z"
+              transform="translate(0 10.314) rotate(-45)"
+              fill="#fff"
+            />
+          </svg>
+        </button>
+      </form>
+    </div>
+    <!-- /Form -->
   </div>
 </div>

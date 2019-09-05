@@ -1,10 +1,10 @@
-<div class="container my-5">
-  <div class="row">
-    <div class="col-md-6 mx-auto card card-body bg-light">
-      <form [formGroup]="registerForm" (ngSubmit)="register()">
-        <!-- Email -->
+<div class="row">
+  <div class="col-md-4 mx-auto">
+    <div class="form">
+      <form class="login-form" [formGroup]="registerForm" (ngSubmit)="register()">
+        <!-- Form Group -->
         <div class="form-group">
-          <label for="email" class="font-weight-bolder">Email:</label>
+          <label for="email">Email: </label>
           <input
             type="email"
             name="email"
@@ -13,23 +13,17 @@
             formControlName="email"
             [class.is-invalid]="isInvalid('email')"
           />
-          <small
-            class="invalid-feedback font-weight-bolder"
-            *ngIf="hasError('email', 'required')"
-          >
+          <small class="invalid-feedback" *ngIf="hasError('email', 'required')">
             Email is required
           </small>
-          <small
-            class="invalid-feedback font-weight-bolder"
-            *ngIf="hasError('email', 'email')"
-          >
+          <small class="invalid-feedback" *ngIf="hasError('email', 'email')">
             Not a valid email format
           </small>
         </div>
-        <!-- /Email -->
-        <!-- Password -->
+        <!-- /Form Group -->
+        <!-- Form Group -->
         <div class="form-group">
-          <label for="password" class="font-weight-bolder">Password:</label>
+          <label for="password">Password: </label>
           <input
             type="password"
             name="password"
@@ -40,24 +34,22 @@
             [class.is-invalid]="isInvalid('password')"
           />
           <small
-            class="invalid-feedback font-weight-bolder"
+            class="invalid-feedback"
             *ngIf="hasError('password', 'required')"
           >
             Password is required
           </small>
           <small
-            class="invalid-feedback font-weight-bolder"
+            class="invalid-feedback"
             *ngIf="hasError('password', 'minlength')"
           >
             Passowrd must be 6 characters long or more
           </small>
         </div>
-        <!-- /Password -->
-        <!-- Password Confirmation -->
+        <!-- /Form Group -->
+        <!-- Form Group -->
         <div class="form-group">
-          <label for="password_confirm" class="font-weight-bolder"
-            >Confirm Password:</label
-          >
+          <label for="password_confirm">Password: </label>
           <input
             type="password"
             name="password_confirm"
@@ -80,26 +72,22 @@
             Passwords don't match
           </small>
         </div>
-        <!-- /Password Confirmation -->
-        <!-- Submit -->
-        <div class="form-group">
-          <button
-            type="submit"
-            class="btn btn-block btn-primary font-weight-bolder"
-            [disabled]="registerForm.invalid"
-          >
-            Register
-          </button>
-        </div>
-        <!-- /Submit -->
+        <!-- /Form Group -->
+
+        <button type="submit" [disabled]="registerForm.invalid">
+          Register
+        </button>
+
+        <!-- Or seperator -->
+        <div class="or"><span>OR</span></div>
+        <!-- Social buttons -->
+        <button type="button" class="social-btn btn-google" (click)="registerWithGoogle()">
+          Login with Google
+        </button>
+        <button type="button" class="social-btn btn-github" (click)="registerWithGithub()">
+          Login with Github
+        </button>
       </form>
-      <hr class="my-2" />
-      <button class="btn btn-block btn-danger my-2 font-weight-bolder">
-        Register With Google
-      </button>
-      <button class="btn btn-block btn-dark font-weight-bolder">
-        Register With Github
-      </button>
     </div>
   </div>
 </div>

@@ -1,39 +1,37 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-    <div class="container">
-        <div class="navbar-brand">
-            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-        </div>
-        <!-- User info -->
-        <ul class="navbar-nav mr-auto" *ngIf="isLogged">
-            <!-- User email -->
-            <li class="nav-item">
-                <span class="text-white nav-link">{{ user.email }}</span>
-            </li>
-            <!-- Chat -->
-            <li class="nav-item">
-                <a routerLink="/chat" class="nav-link" routerLinkActive="active">Chat</a>
-            </li>
-        </ul>
-        <!-- /User info -->
-        <!-- Log out -->
-        <ul class="navbar-nav ml-auto" *ngIf="isLogged">
-            <!-- User email -->
-            <li class="nav-item">
-                <button class="btn btn-link nav-link" (click)="logout()">Log out</button>
-            </li>
-        </ul>
-        <!-- /Log out -->
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="nav-container col">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-brand">
+          <a routerLink="/">Brand</a>
+        </li>
+        <li *ngIf="isLogged">
+          {{ user.email }}
+        </li>
+      </ul>
 
-        <!-- Auth list -->
-        <ul class="navbar-nav ml-auto" *ngIf="!isLogged">
-            <!-- Login -->
-            <li class="nav-item">
-                <a routerLink="/login" class="nav-link" routerLinkActive="active">Login</a>
-            </li>
-            <!-- Register -->
-            <li class="nav-item">
-                <a routerLink="/register" class="nav-link" routerLinkActive="active">register</a>
-            </li>
-        </ul>
+      <!-- Logout -->
+      <ul class="navbar-nav ml-auto" *ngIf="isLogged">
+        <li>
+          <span class="toggle"></span>
+        </li>
+        <li>
+          <a (click)="logout()">Logout</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto" *ngIf="!isLogged">
+        <li>
+          <a routerLink="/login" routerLinkActive="active">Login</a>
+        </li>
+        <li>
+          <a routerLink="/register" routerLinkActive="active">Register</a>
+        </li>
+      </ul>
     </div>
+    <div class="col-md-1"></div>
+  </div>
 </nav>
+<!-- /Navbar -->

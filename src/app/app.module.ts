@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
 
 // Forms
 import { ReactiveFormsModule } from "@angular/forms";
@@ -17,6 +19,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { RoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './services/auth.service';
+import { MessagesComponent } from './components/chat/messages/messages.component';
 
 
 @NgModule({
@@ -26,7 +29,8 @@ import { AuthService } from './services/auth.service';
     RegisterComponent,
     ChatComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +38,9 @@ import { AuthService } from './services/auth.service';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireFunctionsModule
+
 
   ],
   providers: [AuthService],
