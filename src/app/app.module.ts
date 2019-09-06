@@ -21,6 +21,9 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './services/auth.service';
 import { MessagesComponent } from './components/chat/messages/messages.component';
 import { ToggleDirective } from './directives/toggle.directive';
+import { WordsDirective } from './directives/words.directive';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -32,7 +35,8 @@ import { ToggleDirective } from './directives/toggle.directive';
     HeaderComponent,
     HomeComponent,
     MessagesComponent,
-    ToggleDirective
+    ToggleDirective,
+    WordsDirective
   ],
   imports: [
     BrowserModule,
@@ -41,8 +45,8 @@ import { ToggleDirective } from './directives/toggle.directive';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    AngularFireFunctionsModule
-
+    AngularFireFunctionsModule,
+    BrowserAnimationsModule
 
   ],
   providers: [AuthService],

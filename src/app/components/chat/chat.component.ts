@@ -5,12 +5,11 @@ import { ActivatedRoute } from "@angular/router";
 import { AngularFireFunctions } from "@angular/fire/functions";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { map} from "rxjs/operators";
 
 @Component({
   selector: "app-chat",
   templateUrl: "./chat.component.html",
-  styleUrls: ["./chat.component.css"]
+  styleUrls: ["./chat.component.css"],
 })
 export class ChatComponent implements OnInit {
   chatroomUnsubscribe: Unsubscribe;

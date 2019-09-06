@@ -14,9 +14,9 @@
   </div>
   <div class="col chat-box">
     <!-- Messages -->
-    <div class="messages" style="flex-direction: column-reverse;display: flex;">
-      <div *ngFor="let msg of messages | async">
-        <div
+    <div class="messages"  style="flex-direction: column-reverse;display: flex;">
+      <div *ngFor="let msg of messages | async" class="msg-box">
+        <div          
           [class.msg]="msg.userID != currentUser.uid"
           [class.msg-owner]="msg.userID == currentUser.uid"
         >
