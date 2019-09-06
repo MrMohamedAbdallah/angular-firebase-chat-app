@@ -12,7 +12,11 @@ admin.initializeApp();
 // Create Message
 exports.createMessageRoom = functions.https.onCall((data, context) => {
   console.log("The top");
-  if (context.auth.uid == null || !data.userID || context.auth.uid == data.userID) {
+  if (
+    context.auth.uid == null ||
+    !data.userID ||
+    context.auth.uid == data.userID
+  ) {
     return {
       message: "Unauthorized"
     };
@@ -91,7 +95,6 @@ exports.createUserProfile = functions.auth.user().onCreate(user => {
 
 //         doc.ad
 
-
 //       } else {
 //         return 'Unauthorized'
 //       }
@@ -100,3 +103,23 @@ exports.createUserProfile = functions.auth.user().onCreate(user => {
 //       console.log(err);
 //     });
 // });
+
+
+// Add userID and createdAt to the messages
+// =================================
+//    Doesn't work for some reason
+// ==================================
+// exports.createMessage = functions.database
+//   .ref("/messages/{roomID}/messages")
+//   .onCreate((snapshot, context) => {
+//     let userID = context.auth.uid;
+//     let time = Date.now();
+
+//     console.log("User ID:", userID);
+//     console.log("Time:", time);
+
+//     return snapshot.ref.set({
+//       from: userID,
+//       createdAt: time
+//     });
+//   });

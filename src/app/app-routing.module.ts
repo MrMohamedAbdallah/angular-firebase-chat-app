@@ -8,7 +8,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/not-auth.guard';
 
 const routes : Routes = [
-    {path: '', component: HomeComponent},
+    {path: '', component: HomeComponent, canActivate: [NotAuthGuard]},
     {path: 'login', component: LoginComponent, canActivate: [NotAuthGuard]},
     {path: 'register', component: RegisterComponent, canActivate: [NotAuthGuard]},
     {path: 'chat', component: ChatComponent, canActivate: [AuthGuard]},

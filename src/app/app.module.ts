@@ -20,6 +20,7 @@ import { RoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './services/auth.service';
 import { MessagesComponent } from './components/chat/messages/messages.component';
+import { ToggleDirective } from './directives/toggle.directive';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { MessagesComponent } from './components/chat/messages/messages.component
     ChatComponent,
     HeaderComponent,
     HomeComponent,
-    MessagesComponent
+    MessagesComponent,
+    ToggleDirective
   ],
   imports: [
     BrowserModule,

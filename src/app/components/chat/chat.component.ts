@@ -5,6 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 import { AngularFireFunctions } from "@angular/fire/functions";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { map} from "rxjs/operators";
 
 @Component({
   selector: "app-chat",
@@ -36,7 +37,7 @@ export class ChatComponent implements OnInit {
             this.messages = this.firestore
               .collection("/messages")
               .doc(docId)
-              .collection("messages")
+              .collection("messages", ref => ref.orderBy("createdAt", "desc"))
               .valueChanges();
               this.roomID = docId;
           },
@@ -64,9 +65,10 @@ export class ChatComponent implements OnInit {
 
   send(){
     let msg = this.msgForm.value.msg;
+    let userID = this.currentUser.uid;
 
     this.firestore.collection(`/messages/${this.roomID}/messages`).add({
-      from: "Mohamed",
+      userID: userID,
       content: msg,
       createdAt: Date.now()
     }).catch( err =>{ 

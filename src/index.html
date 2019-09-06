@@ -1,14 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>ChatApp</title>
-  <base href="/">
+  <head>
+    <meta charset="utf-8" />
+    <title>ChatApp</title>
+    <base href="/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <app-root></app-root>
+
+    <div id="particles-js"></div>
+
+    <script src="./assets/js/particles.min.js"></script>
+    <script>
+      if (document.querySelector("#particles-js")) {
+        particlesJS.load("particles-js", "./assets/js/particles.json", function() {
+          console.log("callback - particles.js config loaded");
+        });
+      }
+    </script>
+  </body>
 </html>

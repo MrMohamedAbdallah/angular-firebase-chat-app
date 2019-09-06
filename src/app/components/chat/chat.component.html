@@ -1,11 +1,12 @@
 <div class="chat row">
   <div class="col-md-2 col-sm-4 col-4 p-0 users">
     <ul class="users-list">
-      <li
-        class="list-group-item list-group-item-action rounded-0"
-        *ngFor="let user of users | async"
-      >
-        <a [routerLink]="['/chat', user.userID]" routerActiveLink="active" *ngIf="user.userID != currentUser.uid">
+      <li *ngFor="let user of users | async">
+        <a
+          [routerLink]="['/chat', user.userID]"
+          routerLinkActive="active"
+          *ngIf="user.userID != currentUser.uid"
+        >
           {{ user.email }}
         </a>
       </li>
@@ -13,12 +14,12 @@
   </div>
   <div class="col chat-box">
     <!-- Messages -->
-    <div class="messages">
+    <div class="messages" style="flex-direction: column-reverse;display: flex;">
       <div *ngFor="let msg of messages | async">
-        <div class="msg-owner" 
+        <div
+          [class.msg]="msg.userID != currentUser.uid"
+          [class.msg-owner]="msg.userID == currentUser.uid"
         >
-        <!-- [class.msg]="user.userID != currentUser.uid"
-        [class.msg-owner]="user.userID == currentUser.uid" -->
           <div class="msg-text">{{ msg.content }}</div>
         </div>
       </div>
@@ -47,7 +48,11 @@
           formControlName="to"
           [(ngModel)]="roomID"
         />
-        <button type="submit" [disabled]="msgForm.invalid" style="text-align: center;">
+        <button
+          type="submit"
+          [disabled]="msgForm.invalid"
+          style="text-align: center;"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="19.11"
